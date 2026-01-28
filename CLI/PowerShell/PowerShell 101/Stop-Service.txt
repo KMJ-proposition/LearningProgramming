@@ -1,0 +1,36 @@
+﻿Stop-Service : 다음 오류로 인해 'VMware NAT Service (VMware NAT Service)' 서비스를 중지할 수 없습니다. '.' 컴퓨터의 VMware N
+AT Service 서비스를 열 수 없습니다.
+위치 줄:12 문자:1
++ Stop-Service -Name 'VMware NAT Service' -Verbose 2>&1 | Out-File .\St ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : CloseError: (System.ServiceProcess.ServiceController:ServiceController 
+   ) [Stop-Service], ServiceCommandException
+    + FullyQualifiedErrorId : CouldNotStopService,Microsoft.PowerShell.Commands.StopServiceCommand
+ 
+
+
+::2. Get-ExecutionPolicy 실행 결과:
+Restricted
+
+
+::3. Get-ExecutionPolicy -List 실행 결과:
+
+        Scope ExecutionPolicy
+        ----- ---------------
+MachinePolicy       Undefined
+   UserPolicy       Undefined
+      Process       Undefined
+  CurrentUser       Undefined
+ LocalMachine       Undefined
+이는 관리자 권한이 아니기에 아무것도 출력되지 않음을 표현
+>>>>> Stop-Serivce: 관리자 권한이 필요한 명령어
+
+
+이 명령을 분석하기 위해 Copilot과 대화를 나누었음.
+curly bracket을 사용하는 이유는 명령을 그룹화해 현재 터미널(부모 터미널)에서 실행하는 기본적 구조에 관한 것이었다.
+'$ ()', '()', '{}' 이 셋을 이야기하던 중 fork와 exec가 떠올라 질문을 하니 bash 셸에 대한 이해를 논하였고, 배워야 할 것이 산더미임을 파악함.
+
+무엇이든 단순한 의문에서 시작된다.
+
+
+
