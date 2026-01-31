@@ -1,0 +1,85 @@
+# UNIX/LINUX
+    OS: Redhat Rocky9
+
+U01[상] - root 계정 원격 접속 제한
+    1) console: /etc/pam.d/login
+    2) telnet: /etc/securetty -> 제거
+    3) ssh: /etc/ssh/sshd_config
+
+U02[상] - 암호 복잡성 만족, 사용 기한 
+    1) /etc/login.defs
+    2) /etc/security/pwquality.conf
+    3) /etc/security/pwhistory.conf
+    4) /etc/pam.d/system-auth
+
+U03[상] - 로그인 시도 횟수 제한
+    1) /etc/pam.d/ -> authselect, unlock_time
+    2) /etc/security/faillock.conf
+
+U04[상] - 계암호 파일 관리
+    1) pwconv
+
+U05[상] - root 계정 UID=0 유일성 만족
+    1) usermod
+    2) crontab 중복 검사 스케쥴 예약
+
+U06[상] - su 기능 제한
+    1) PAM 모듈 사용 확인
+    2) /etc/group -> wheel 그룹 탐색 또는 생성
+    3) /usr/bin/su, /etc/pam.d/su -> 파일 권한 확인 및 수정
+
+U14[상] - root 홈, 패스 디렉터리 권한 및 패스 설정
+    1) $PATH -> 환경변수에 "." 포함 확인 및 제거
+
+U15[상] - 파일 및 디렉터리 소유자 설정
+    1) find -> 소유자, 그룹이 없는 파일 또는 디렉터리 탐색
+    2) rm|rmdir -> 소유자, 그룹이 없는 파일 또는 디렉터리 제거
+    3) chown|chgrp -> 사용 중인 파일 또는 디렉터리는 소유자 및 그룹 변경
+
+U16[상] - /etc/passwd 파일 소유자 및 권한 설정
+    1) /etc/passwd -> 파일 소유자·권한 확인 및 변경
+
+U17[상] - 시스템 시작 스크립트 권한 설정
+    1) /etc/rc*.d/ -> 시스템 시작 시 실행되는 스크립트 소유자 권한 확인 및 변경
+    2) /etc/systemd/system/ -> 				〃
+
+파일 소유자 및 권한 설정: 불필요 또는 일반 사용자 권한 점검
+	U-18[상] - /etc/shadow -> 400
+	U-19[상] - /etc/hosts -> 644
+	U-20[상] - /etc/(x)inetd.conf -> 600
+	U-21[상] - /etc/(r)syslog.conf -> 640
+	U-22[상] - /etc/services -> 644
+	U-24[상] - 사용자, 시스템 환경변수 파일 -> 일반 사용자 쓰기 권한 제거
+	U-25[상] - world writable 파일 -> 권한 점검
+
+U-23[상] - 특수 권한 파일 점검
+    1) find -> SUID, SGID 설정 파일 탐색
+    2) chmod | chgrp -> SUID 등 일반 사용자의 특수 권한 점검 및 관리
+
+U07[하] - 불필요한 계정 제거
+    1) /etc/passwd -> 탐색 후 불필요한 계정 제거
+    2) last -> 로그인 기록 확인
+
+U09[하] - 불필요 또는 빈 그룹 삭제
+    1) /etc/group -> 탐색 및 불필요 또는 빈 그룹 삭제
+    2) /etc/gshadow -> 탐색 및 불필요 또는 빈 그룹 삭제
+
+U11[하] - 사용 shell 제한
+    1) /etc/passwd -> 탐색 및 불필요 계정에 nologin|false 쉘 부여
+    2) 반대로 시행
+
+U12[하] - 세션 종료 시간 설정
+    1) 셸: /etc/profile -> TMOUT 설정
+    2) ssh: /etc/csh.cshrc | /etc/csh.login -> autologout 설정
+
+U08[중] - 관리자 그룹의 계정 최소화
+    1) /etc/group -> 탐색 및 불필요 계정 타그룹으로 이동
+
+U10[중] - UID 중복 금지
+    1) /etc/passwd -> 탐색 및 중복 UID 제거
+
+U13[중] - 안전한 비밀번호 암호화 알고리즘 사용
+    1) /etc/shadow | /etc/passwd -> 암호화 필드 값 확인
+    2) /etc/login.defs -> ENCRYPT_METHOD 설정
+    3) /etc/pam.d/system-auth -> 알고리즘 설정
+
