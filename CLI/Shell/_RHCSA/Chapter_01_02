@@ -1,7 +1,7 @@
 01. Understand and user essential tools
 	02 - Use input-output redirection
-
-
+		# >, >>, <, |
+		# wc, head, tail, date, ()
 
 1. Standard Output Redirection (>, >>)
 >, >>	# 출력 리다이렉션, 명령어의 내용을 파일 내용으로 '출력'한다. 쓰기 전용

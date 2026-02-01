@@ -1,6 +1,7 @@
 01. Understand and user essential tools
 	01 - Access a shell prompt and issue commands with correct syntax
-
+		# tty, cd, useradd, ssh, mkdir, rmdir, cat, cp, rm, mv, ls, vim, nano, history
+		# su, read, write, stat, udevadm, mknod, compgen, fdisk
 
 1. Accessing the Shell Prompt
 tty # 사용중인 터미널 확인
@@ -15,7 +16,7 @@ passwd examuser		# 계정 삭제
 //	새 암호:
 //	잘못된 암호: 암호에 사용자 이름이 들어 있습니다
 //	새 암호 재입력:
-// 	asswd: 모든 인증 토큰이 성공적으로 업데이트 되었습니다.
+// 	passwd: 모든 인증 토큰이 성공적으로 업데이트 되었습니다.
 ssh examuser@localhost
 examuser@localhost's password: 
 //	Last failed login: Sat Jan 31 22:45:16 KST 2026 from ::1 on ssh:notty
@@ -109,8 +110,8 @@ history		# 입력한 명령어의 기록, 기록을 검색해 재사용 하거�
 
 
 *. 후기
-기초와 기본을 쌓으라고들 말한다.
-그 끝이 없는데 어떻게 다 쌓는가?
+  기초와 기본을 쌓으라고들 말한다.
+  그 끝이 없는데 어떻게 다 쌓는가?
 
 
 
@@ -145,4 +146,3 @@ history		# 입력한 명령어의 기록, 기록을 검색해 재사용 하거�
  1034  vi /etc/hosts
  1035  su - examuser
  1036  history
-
